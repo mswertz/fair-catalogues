@@ -3,7 +3,7 @@
 <#list modules as module>
 # Module ${module.name}
 <#list module.tables as table>
-* [${table.name}](#user_content_${table.name?lower_case})
+* [${table.name}](#${table.name?lower_case})
 </#list></#list>
 
 <#list modules as module>
