@@ -14,11 +14,9 @@ public class Convert {
   public static void main(String[] args) throws IOException, TemplateException {
 
     List<String> files = List.of("variables.yaml", "mappings.yaml");
-    String output = "../../../../../output";
     ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
 
     // to file
-    PrintWriter outfile = new PrintWriter("documentation.html");
 
     // parse
     List<Module> modules = new ArrayList<>();
@@ -28,12 +26,22 @@ public class Convert {
       modules.add(mapper.readValue(new File(file), Module.class));
     }
 
-    // execute
+    // generate table format
     Configuration cfg = new Configuration();
     cfg.setObjectWrapper(new DefaultObjectWrapper());
     cfg.setClassForTemplateLoading(Convert.class, "");
-    cfg.getTemplate("documentation.ftl").process(Map.of("modules", modules), outfile);
 
+    PrintWriter outfile = new PrintWriter("tableformat.md");
+    cfg.getTemplate("tableformat.ftl").process(Map.of("modules", modules), outfile);
+    outfile.close();
+
+    // generate bullet format
+    cfg = new Configuration();
+    cfg.setObjectWrapper(new DefaultObjectWrapper());
+    cfg.setClassForTemplateLoading(Convert.class, "");
+
+    outfile = new PrintWriter("bulletformat.md");
+    cfg.getTemplate("bulletformat.ftl").process(Map.of("modules", modules), outfile);
     outfile.close();
   }
 }
