@@ -1,0 +1,113 @@
+name: Mappings
+tables:
+  - name: "VariableMappings"
+    description: "Mappings from collected variables to standard/harmonized variables,\
+      \ optionally including ETL syntax."
+    columns:
+      - name: "fromRelease"
+        key: 1
+        required: true
+        refTable: "Releases"
+        refJsTemplate: "${resource.acronym}.${version}"
+        columnType: "REF"
+      - name: "fromTable"
+        key: 1
+        required: true
+        refTable: "Tables"
+        refLink: "fromRelease"
+        refJsTemplate: "${name}"
+        columnType: "REF"
+      - name: "fromVariable"
+        refTable: "AllVariables"
+        refLink: "fromTable"
+        refJsTemplate: "${name}"
+        description: "optional, variable. Initially one may only define mapping between\
+        \ releases"
+        columnType: "REF_ARRAY"
+      - name: "toRelease"
+        key: 1
+        required: true
+        refTable: "Releases"
+        refJsTemplate: "${resource.acronym}.${version}"
+        columnType: "REF"
+      - name: "toTable"
+        key: 1
+        required: true
+        refTable: "Tables"
+        refLink: "toRelease"
+        refJsTemplate: "${name}"
+        columnType: "REF"
+      - name: "toVariable"
+        key: 1
+        required: true
+        refTable: "AllVariables"
+        refLink: "toTable"
+        refJsTemplate: "${name}"
+        description: "in UI this is then one lookup field. In Excel it will be two columns.\
+        \ Value of 'targetVariable' is filtered based on selected 'targetCollection'\
+        \ and together be used for fkey(collection,dataset,name) in Variable."
+        columnType: "REF"
+      - name: "match"
+        required: true
+        refTable: "StatusDetails"
+        refJsTemplate: "${name}"
+        description: "e.g. 'complete, partial, planned, no-match'"
+        columnType: "REF"
+      - name: "status"
+        refTable: "Status"
+        refJsTemplate: "${name}"
+        description: "whether harmonisation is still draft or final"
+        columnType: "REF"
+      - name: "description"
+        description: "human readible description of the mapping"
+        columnType: "TEXT"
+      - name: "comments"
+        description: "additional notes and comments"
+        columnType: "TEXT"
+      - name: "syntax"
+        description: "formal definition of the mapping, ideally executable code"
+        columnType: "TEXT"
+  - name: "TableMappings"
+    description: "Mapping from collected tables to standard/harmonized tables, optionally\
+      \ including ETL syntaxes"
+    columns:
+      - name: "fromRelease"
+        key: 1
+        required: true
+        refTable: "Releases"
+        refJsTemplate: "${resource.acronym}.${version}"
+        description: "release being mapped from, i.e. fromRelease.resource + fromRelease.version"
+        columnType: "REF"
+      - name: "fromTable"
+        key: 1
+        required: true
+        refTable: "Tables"
+        refLink: "fromRelease"
+        refJsTemplate: "${name}"
+        description: "name of the table being mapped from"
+        columnType: "REF"
+      - name: "toRelease"
+        key: 1
+        required: true
+        refTable: "Releases"
+        refJsTemplate: "${resource.acronym}.${version}"
+        description: "release being mapped to, i.e. toRelease.resource + toRelease.version"
+        columnType: "REF"
+      - name: "toTable"
+        key: 1
+        required: true
+        refTable: "Tables"
+        refLink: "toRelease"
+        refJsTemplate: "${name}"
+        description: "name of the table being mapped to"
+        columnType: "REF"
+      - name: "order"
+        description: "Order in which table ETLs should be executed for this source-target\
+        \ combination"
+        columnType: "INT"
+      - name: "description"
+        description: "human readible description of the mapping"
+        columnType: "TEXT"
+      - name: "syntax"
+        description: "formal definition of the mapping, ideally executable code"
+        columnType: "TEXT"
