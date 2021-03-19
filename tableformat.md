@@ -1,13 +1,12 @@
 # FAIR catalogue - minimum inforation model
-TODO description
 
-#Module Variables
+# Module Variables
 * [Variables](#Variables)
 * [RepeatedVariables](#RepeatedVariables)
 * [VariableValues](#VariableValues)
 * [Tables](#Tables)
 * [Vocabularies](#Vocabularies)
-#Module Mappings
+# Module Mappings
 * [VariableMappings](#VariableMappings)
 * [TableMappings](#TableMappings)
 
@@ -72,6 +71,7 @@ TODO description
 | ontologyTermURI |  |  |
 | children |  | link to more specific terms |
 | mg_tableclass |  |  |
+
 ## Mappings
 |element |mapping |description |
 |--------|--------|------------|
@@ -97,4 +97,5 @@ TODO description
 | order |  | Order in which table ETLs should be executed for this source-target combination |
 | description |  | human readible description of the mapping |
 | syntax |  | formal definition of the mapping, ideally executable code |
+
 
