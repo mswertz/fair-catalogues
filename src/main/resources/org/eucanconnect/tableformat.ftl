@@ -13,7 +13,6 @@
 ### ${table.name}
 |element |mapping |description |
 |--------|--------|------------|
-|element |mapping |description |
 <#list table.columns as column>
 | ${column.name} | <#if column.maelstrom??>Maelstrom: ${column.maelstrom.name?if_exists}<br/></#if><#if column.molgenis??>Molgenis: ${column.molgenis.name?if_exists}<br/></#if> | ${column.description?if_exists} |
 </#list></#list>

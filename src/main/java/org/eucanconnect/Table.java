@@ -6,6 +6,16 @@ public class Table {
   String name;
   String description;
   Mapping maelstrom;
+  Mapping molgenis;
+
+  public Mapping getMolgenis() {
+    return molgenis;
+  }
+
+  public void setMolgenis(Mapping molgenis) {
+    this.molgenis = molgenis;
+  }
+
   String inherit;
   List<Column> columns;
 

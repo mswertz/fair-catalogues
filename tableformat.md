@@ -15,51 +15,42 @@
 ### Variables
 |element |mapping |description |
 |--------|--------|------------|
-|element |mapping |description |
-| release | Maelstrom: dataschema<br/>Molgenis: release<br/> | release this table definition is part of |
-| table | Maelstrom: dataset<br/> | table this variable is part of |
-| name | Maelstrom: dsch_var_name<br/> | name of the variable, unique within a table |
-| collectionEvent |  | in case of protocolised data collection this defines the moment in time this variable is collected on |
+| schema | Maelstrom: dataschema / study_dataset<br/>Molgenis: release<br/> | name and version of a data schema (can be collected, or harmonized) |
+| table | Maelstrom: dataset (?)<br/>Molgenis: table<br/> | name of the table this variable is part of |
+| name | Maelstrom: dsch_var_name / study_specific_var_name<br/>Molgenis: name<br/> | name of the variable. Consider to use meaningfull naming scheme. |
 | label | Maelstrom: dsch_var_label<br/> |  |
-| format | Maelstrom: dsch_var_type<br/> | string,int,decimal,date,datetime etc |
-| unit | Maelstrom: dsch_var_unit<br/> | unit ontology |
-| references |  | to define foreigh key relationships between variables within or across tables |
-| mandatory |  | whether this variable is required within this collection |
+| topics | Molgenis: topics<br/> |  |
+| format | Maelstrom: dsch_var_type<br/>Molgenis: format<br/> | type or format of the variable |
+| unit | Maelstrom: dsch_var_unit<br/>Molgenis: unit<br/> | unit ontology |
+| collectionEvent |  | in case of protocolised data collection this defines the moment in time this variable is collected on |
+| references | Molgenis: references<br/> |  |
+| mandatory | Molgenis: mandatory<br/> |  |
 | description | Maelstrom: dsch_var_description<br/> |  |
 | order | Maelstrom: dsch_index<br/> | to sort variables you can optionally add an order value |
-| exampleValues |  |  |
-| permittedValues |  |  |
-| contents |  |  |
-| repeats |  | listing of all repeated variables defined for this variable |
-| vocabularies |  |  |
+| exampleValues | Molgenis: exampleValues<br/> |  |
+| vocabularies | Molgenis: vocabularies<br/> |  |
 ### RepeatedVariables
 |element |mapping |description |
 |--------|--------|------------|
-|element |mapping |description |
-| release |  | release this table definition is part of |
-| table |  | table this variable is part of |
-| name |  | name of the variable, unique within a table |
-| collectionEvent |  | in case of protocolised data collection this defines the moment in time this variable is collected on |
-| mg_tableclass |  |  |
-| mappings |  | listing of the VariableMappings defined between this variable and standard/harmonized variables |
-| isRepeatOf |  | reference to the definition of the variable that is being repeated |
+| release (see variable) |  |  |
+| table (see variable) |  |  |
+| name (see variable) |  |  |
+| isRepeatOf | Molgenis: isRepeatOf<br/> | reference to the definition of the variable that is being repeated |
 ### VariableValues
 |element |mapping |description |
 |--------|--------|------------|
-|element |mapping |description |
-| release |  |  |
-| variable |  | e.g. PATO |
-| value |  | e.g. '1' |
-| label |  |  |
-| order |  |  |
-| isMissing |  |  |
-| ontologyTermIRI |  | reference to ontology term that defines this categorical value |
+| release | Maelstrom: dataschema<br/>Molgenis: release<br/> |  |
+| variable | Maelstrom: dsch_var_name<br/>Molgenis: variable<br/> |  |
+| value | Maelstrom: dsch_var_cat_code<br/>Molgenis: value<br/> |  |
+| label | Maelstrom: dsch_var_cat_label<br/>Molgenis: label<br/> |  |
+| order | Molgenis: order<br/> |  |
+| isMissing | Maelstrom: missing<br/>Molgenis: isMissing<br/> |  |
+| ontologyTermIRI | Molgenis: ontologyTermIRI<br/> | reference to ontology term that defines this categorical value |
 ### Tables
 |element |mapping |description |
 |--------|--------|------------|
-|element |mapping |description |
-| release |  | resource + version this table is defined for |
-| name |  | unique name in the release |
+| schema | Maelstrom: dataschema<br/>Molgenis: release<br/> |  |
+| name | Maelstrom: dsch name<br/> | unique name in the release |
 | label |  | short human readible description |
 | unitOfObservation |  | defines what each record in this table describes |
 | contents |  | enables grouping of table list into topic and to display tables in a tree |
@@ -70,7 +61,6 @@
 ### Vocabularies
 |element |mapping |description |
 |--------|--------|------------|
-|element |mapping |description |
 | name |  |  |
 | code |  | identifier used for this code with the ontology |
 | order |  |  |
@@ -86,7 +76,6 @@
 ### VariableMappings
 |element |mapping |description |
 |--------|--------|------------|
-|element |mapping |description |
 | fromRelease |  |  |
 | fromTable |  |  |
 | fromVariable |  | optional, variable. Initially one may only define mapping between releases |
@@ -101,7 +90,6 @@
 ### TableMappings
 |element |mapping |description |
 |--------|--------|------------|
-|element |mapping |description |
 | fromRelease |  | release being mapped from, i.e. fromRelease.resource + fromRelease.version |
 | fromTable |  | name of the table being mapped from |
 | toRelease |  | release being mapped to, i.e. toRelease.resource + toRelease.version |

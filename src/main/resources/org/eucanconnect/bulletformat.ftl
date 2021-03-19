@@ -13,10 +13,12 @@
     <#list module.tables as table>
 ### Table ${table.name}
         <#list table.columns as column>
-* ${column.name} - ${column.description?if_exists}<#if column.maelstrom??>
-    * Maelstrom: ${column.maelstrom.name?if_exists}
-</#if><#if column.molgenis??>
-    * Molgenis: ${column.molgenis.name?if_exists}
+* ${column.name}<#if column.description??> - ${column.description}</#if><#if column.maelstrom??>
+    * Maelstrom: ${column.maelstrom.name?if_exists}<#if column.maelstrom.description??> - ${column.maelstrom.description}</#if><#if column.maelstrom.info??>
+~~~~
+${column.maelstrom.info}
+~~~~</#if></#if><#if column.molgenis??>
+    * Molgenis: ${column.molgenis.name?if_exists}<#if column.molgenis.description??> - ${column.molgenis.description}</#if>
 </#if>
 
         </#list>
