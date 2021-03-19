@@ -1,14 +1,14 @@
 # FAIR catalogue - minimum inforation model
 
 # Module Variables
-* [Variables](#Variables)
-* [RepeatedVariables](#RepeatedVariables)
-* [VariableValues](#VariableValues)
-* [Tables](#Tables)
-* [Vocabularies](#Vocabularies)
+* [Variables](#user_content_variables)
+* [RepeatedVariables](#user_content_repeatedvariables)
+* [VariableValues](#user_content_variablevalues)
+* [Tables](#user_content_tables)
+* [Vocabularies](#user_content_vocabularies)
 # Module Mappings
-* [VariableMappings](#VariableMappings)
-* [TableMappings](#TableMappings)
+* [VariableMappings](#user_content_variablemappings)
+* [TableMappings](#user_content_tablemappings)
 
 ## Variables
 |element |mapping |description |
