@@ -11,9 +11,10 @@
 * [TableMappings](#tablemappings)
 
 ## Variables
+
+### Variables
 |element |mapping |description |
 |--------|--------|------------|
-| Entity: Variables |
 |element |mapping |description |
 | release | Maelstrom: dataschema<br/>Molgenis: release<br/> | release this table definition is part of |
 | table | Maelstrom: dataset<br/> | table this variable is part of |
@@ -31,7 +32,9 @@
 | contents |  |  |
 | repeats |  | listing of all repeated variables defined for this variable |
 | vocabularies |  |  |
-| Entity: RepeatedVariables |
+### RepeatedVariables
+|element |mapping |description |
+|--------|--------|------------|
 |element |mapping |description |
 | release |  | release this table definition is part of |
 | table |  | table this variable is part of |
@@ -40,7 +43,9 @@
 | mg_tableclass |  |  |
 | mappings |  | listing of the VariableMappings defined between this variable and standard/harmonized variables |
 | isRepeatOf |  | reference to the definition of the variable that is being repeated |
-| Entity: VariableValues |
+### VariableValues
+|element |mapping |description |
+|--------|--------|------------|
 |element |mapping |description |
 | release |  |  |
 | variable |  | e.g. PATO |
@@ -49,7 +54,9 @@
 | order |  |  |
 | isMissing |  |  |
 | ontologyTermIRI |  | reference to ontology term that defines this categorical value |
-| Entity: Tables |
+### Tables
+|element |mapping |description |
+|--------|--------|------------|
 |element |mapping |description |
 | release |  | resource + version this table is defined for |
 | name |  | unique name in the release |
@@ -60,7 +67,9 @@
 | numberOfRows |  | count of the numbe of records in this table |
 | mappings |  | list of mappings between this table and standard/harmonized tables |
 | mappingsTo |  |  |
-| Entity: Vocabularies |
+### Vocabularies
+|element |mapping |description |
+|--------|--------|------------|
 |element |mapping |description |
 | name |  |  |
 | code |  | identifier used for this code with the ontology |
@@ -73,9 +82,10 @@
 | mg_tableclass |  |  |
 
 ## Mappings
+
+### VariableMappings
 |element |mapping |description |
 |--------|--------|------------|
-| Entity: VariableMappings |
 |element |mapping |description |
 | fromRelease |  |  |
 | fromTable |  |  |
@@ -88,7 +98,9 @@
 | description |  | human readible description of the mapping |
 | comments |  | additional notes and comments |
 | syntax |  | formal definition of the mapping, ideally executable code |
-| Entity: TableMappings |
+### TableMappings
+|element |mapping |description |
+|--------|--------|------------|
 |element |mapping |description |
 | fromRelease |  | release being mapped from, i.e. fromRelease.resource + fromRelease.version |
 | fromTable |  | name of the table being mapped from |
