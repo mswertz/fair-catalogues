@@ -190,6 +190,39 @@ tables:
         refJsTemplate: "${table.name}.${name}"
         description: "reference to the definition of the variable that is being repeated"
         columnType: "REF"
+  - name: "VariableValues"
+    description: "Listing of categorical value+label definition in case of a categorical\
+      \ variable"
+    columns:
+      - name: "release"
+        key: 1
+        required: true
+        refTable: "Releases"
+        refJsTemplate: "${resource.acronym}.${version}"
+        columnType: "REF"
+      - name: "variable"
+        key: 1
+        required: true
+        refTable: "Variables"
+        refLink: "release"
+        refJsTemplate: "${table.name}.${name}"
+        description: "e.g. PATO"
+        columnType: "REF"
+      - name: "value"
+        key: 1
+        required: true
+        description: "e.g. '1'"
+        columnType: "STRING"
+      - name: "label"
+        required: true
+        columnType: "STRING"
+      - name: "order"
+        columnType: "INT"
+      - name: "isMissing"
+        columnType: "BOOL"
+      - name: "ontologyTermIRI"
+        description: "reference to ontology term that defines this categorical value"
+        columnType: "STRING"
   - name: "Tables"
     description: "Definition of a table within a data release"
     columns:
@@ -236,39 +269,6 @@ tables:
         mappedBy: "fromTable"
         refJsTemplate: "${fromRelease.resource.acronym}.${fromRelease.version}.${fromTable.name}.${toRelease.resource.acronym}.${toRelease.version}.${toTable.name}"
         columnType: "REFBACK"
-  - name: "VariableValues"
-    description: "Listing of categorical value+label definition in case of a categorical\
-      \ variable"
-    columns:
-      - name: "release"
-        key: 1
-        required: true
-        refTable: "Releases"
-        refJsTemplate: "${resource.acronym}.${version}"
-        columnType: "REF"
-      - name: "variable"
-        key: 1
-        required: true
-        refTable: "Variables"
-        refLink: "release"
-        refJsTemplate: "${table.name}.${name}"
-        description: "e.g. PATO"
-        columnType: "REF"
-      - name: "value"
-        key: 1
-        required: true
-        description: "e.g. '1'"
-        columnType: "STRING"
-      - name: "label"
-        required: true
-        columnType: "STRING"
-      - name: "order"
-        columnType: "INT"
-      - name: "isMissing"
-        columnType: "BOOL"
-      - name: "ontologyTermIRI"
-        description: "reference to ontology term that defines this categorical value"
-        columnType: "STRING"
   - name: "Vocabularies"
     inherit: "OntologyTerms"
     columns:

@@ -4,8 +4,8 @@
 * Module Variables
   * [Variables](#Variables)
   * [RepeatedVariables](#RepeatedVariables)
-  * [Tables](#Tables)
   * [VariableValues](#VariableValues)
+  * [Tables](#Tables)
   * [Vocabularies](#Vocabularies)
 * Module Mappings
   * [VariableMappings](#VariableMappings)
@@ -54,6 +54,14 @@
 * mg_tableclass - 
 * mappings - listing of the VariableMappings defined between this variable and standard/harmonized variables
 * isRepeatOf - reference to the definition of the variable that is being repeated
+### Table VariableValues
+* release - 
+* variable - e.g. PATO
+* value - e.g. '1'
+* label - 
+* order - 
+* isMissing - 
+* ontologyTermIRI - reference to ontology term that defines this categorical value
 ### Table Tables
 * release - resource + version this table is defined for
 * name - unique name in the release
@@ -64,14 +72,6 @@
 * numberOfRows - count of the numbe of records in this table
 * mappings - list of mappings between this table and standard/harmonized tables
 * mappingsTo - 
-### Table VariableValues
-* release - 
-* variable - e.g. PATO
-* value - e.g. '1'
-* label - 
-* order - 
-* isMissing - 
-* ontologyTermIRI - reference to ontology term that defines this categorical value
 ### Table Vocabularies
 * name - 
 * code - identifier used for this code with the ontology
