@@ -24,4 +24,4 @@ We partitioned fair catalogues into:
 
 ## Background
 
-This effort is supported by H2020 projects EUCAN-connect, with liaisons to LifeCycle, Interconnect, RECAP, CINECA, Athlete, LongITools, and Canadian Reach.
+This effort is supported by H2020 projects EUCAN-connect, with liaisons to LifeCycle, Interconnect, RECAP, CINECA, Athlete, LongITools, BBMRI, and Canadian Reach.
