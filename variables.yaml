@@ -1,37 +1,38 @@
 name: Variables
 tables:
   - name: "Variables"
-    description: "Definition of a non-repeated variable, or of the first variable from\
-      \ a repeated range"
+    info: "In molgenis both collected and harmonized variables are within same table. In Maelstrom split between dsch* and study* tables (recognizable from prefix)"
     maelstrom:
-      name: dsch_variables
+      name: dsch_variables / study_variables
     molgenis:
-      name: variables
+      name: Variables
+      description: "Definition of a non-repeated variable, or of the first variable from\
+        \ a repeated range"
     columns:
+      - name: version
+        molgenis:
+          name: release.version
+          description: version of the schema that this variable is part of
       - name: "schema"
-        description: name and version of a data schema (can be collected, or harmonized)
         key: 1
         required: true
         maelstrom:
           name: dataschema / study_dataset
         molgenis:
-          name: release
+          name: release.resource
+          description: name and version of a data schema (can be collected, or harmonized)
       - name: "table"
-        description: name of the table this variable is part of
         key: 1
         required: true
-        inherited: true
         maelstrom:
           name: dataset (?)
         molgenis:
           name: table
           description: "table this variable is part of"
       - name: "name"
-        description: name of the variable. Consider to use meaningfull naming scheme.
         key: 1
         required: true
         columnType: "STRING"
-        inherited: true
         maelstrom:
           name: dsch_var_name / study_specific_var_name
           description: Name of the DataSchema variable
@@ -44,24 +45,22 @@ tables:
           name: dsch_var_label
           description: Short description (label) of DataSchema variable
       - name: "topics"
-        refTable: "Topics"
         columnType: "REF_ARRAY"
         molgenis:
           name: topics
           description: annotation to indicate topic of the variable (e.g. using maelstrom areas of information)
+        maelstrom:
+          name: study_specific_var_keywords
+          description: Comments or keywords important to estimate harmonization status
       - name: "format"
-        description: type or format of the variable
-        refTable: "Formats"
-        refJsTemplate: "${name}"
         columnType: "REF"
         maelstrom:
-          name: dsch_var_type
+          name: dsch_var_type / study_specific_var_type
           description: Type of DataSchema variable
         molgenis:
           name: format
-          description: string,int,decimal,date,datetime etc
+          description: type or format of the variable
       - name: "unit"
-        description: "unit ontology"
         columnType: "REF"
         maelstrom:
           name: dsch_var_unit
@@ -70,10 +69,10 @@ tables:
           name: unit
           description: unit ontology
       - name: "collectionEvent"
-        refTable: "CollectionEvents"
-        refJsTemplate: "${resource.acronym}.${name}"
-        description: "in case of protocolised data collection this defines the moment\
-        \ in time this variable is collected on"
+        molgenis:
+          name: collectionEvent
+          description: "in case of protocolised data collection this defines the moment\
+          \ in time this variable is collected on"
         columnType: "REF"
         inherited: true
       - name: "references"
@@ -100,11 +99,13 @@ tables:
                         - Harmonization decisions taken to generate the DataSchema variable
                         - General information from study-specific study design that would affect harmonization (e.g. Study A excluded participants who are diagnosed with cancer)"
       - name: "order"
-        description: "to sort variables you can optionally add an order value"
         columnType: "INT"
         maelstrom:
           name: dsch_index
           description: Rank of DataSchema variable (order in the list )
+        molgenis:
+          name: order
+          description: "to sort variables you can optionally add an order value"
       - name: "exampleValues"
         columnType: "STRING_ARRAY"
         molgenis:
@@ -115,8 +116,9 @@ tables:
           name: vocabularies
           description: link to vocabulary used. E.g. ICD-10
   - name: "RepeatedVariables"
-    description: "Definition of a repeated variable. Refers to another variable for\
-      \ its definition but has its own collection event."
+    molgenis:
+      description: "Definition of a repeated variable. Refers to another variable for\
+        \ its definition but has its own collection event."
     columns:
       - name: "release (see variable)"
       - name: "table (see variable)"
@@ -124,14 +126,11 @@ tables:
       - name: "isRepeatOf"
         required: true
         refTable: "Variables"
-        description: "reference to the definition of the variable that is being repeated"
         columnType: "REF"
         molgenis:
           name: isRepeatOf
           description: "reference to the definition of the variable that is being repeated"
   - name: "VariableValues"
-    description: "Listing of categorical value+label definition in case of a categorical\
-      \ variable"
     maelstrom:
       name: dsch categories
     molgenis:
@@ -143,7 +142,6 @@ tables:
         key: 1
         required: true
         refTable: "Releases"
-        refJsTemplate: "${resource.acronym}.${version}"
         columnType: "REF"
         molgenis:
           name: release
@@ -153,7 +151,6 @@ tables:
         key: 1
         required: true
         refTable: "Variables"
-        refLink: "release"
         columnType: "REF"
         molgenis:
           name: variable
@@ -166,9 +163,9 @@ tables:
         molgenis:
           name: value
         maelstrom:
-          name: dsch_var_cat_code
+          name: dsch_var_cat_code / study_specific_var_cat
+          description: Categories of the study-specific variable(s,) as copied from Questionnaires or Codebook
       - name: "label"
-        required: true
         columnType: "STRING"
         molgenis:
           name: label
@@ -185,21 +182,19 @@ tables:
         molgenis:
           name: isMissing
       - name: "ontologyTermIRI"
-        description: "reference to ontology term that defines this categorical value"
         columnType: "STRING"
         molgenis:
           name: ontologyTermIRI
           description: "reference to ontology term that defines this categorical value"
   - name: "Tables"
-    description: "Definition of a table within a data release"
     molgenis:
+      description: "Definition of a table within a data release"
       name: Tables
     maelstrom:
       name: Datasets
     columns:
       - name: "schema"
         key: 1
-        required: true
         molgenis:
           name: release
           description: "resource + version this table is defined for"
@@ -207,42 +202,40 @@ tables:
           name: dataschema
       - name: "name"
         key: 1
-        required: true
-        description: "unique name in the release"
         columnType: "STRING"
         maelstrom:
           name: dsch name
+        molgenis:
+          name: name
+          description: "unique name in the release"
       - name: "label"
-        description: "short human readible description"
+        molgenis:
+          name: label
+          description: "short human readible description"
         columnType: "STRING"
       - name: "unitOfObservation"
         refTable: "ObservationTargets"
-        refJsTemplate: "${name}"
-        description: "defines what each record in this table describes"
+        molgenis:
+          name: unitOfObservation
+          description: "defines what each record in this table describes"
         columnType: "REF"
-      - name: "contents"
-        refTable: "Contents"
-        refJsTemplate: "${name}"
-        description: "enables grouping of table list into topic and to display tables\
-        \ in a tree"
+      - name: "topics"
+        refTable: "Topics"
+        molgenis:
+          name: topics
+          description: "enables grouping of table list into topic and to display tables\
+          \ in a tree"
         columnType: "REF_ARRAY"
       - name: "description"
-        description: "description of the role/function of this table"
         columnType: "TEXT"
+        molgenis:
+          name: description
+          description: "description of the role/function of this table"
       - name: "numberOfRows"
-        description: "count of the numbe of records in this table"
         columnType: "INT"
-      - name: "mappings"
-        refTable: "TableMappings"
-        mappedBy: "toTable"
-        refJsTemplate: "${fromRelease.resource.acronym}.${fromRelease.version}.${fromTable.name}.${toRelease.resource.acronym}.${toRelease.version}.${toTable.name}"
-        description: "list of mappings between this table and standard/harmonized tables"
-        columnType: "REFBACK"
-      - name: "mappingsTo"
-        refTable: "TableMappings"
-        mappedBy: "fromTable"
-        refJsTemplate: "${fromRelease.resource.acronym}.${fromRelease.version}.${fromTable.name}.${toRelease.resource.acronym}.${toRelease.version}.${toTable.name}"
-        columnType: "REFBACK"
+        molgenis:
+          name: numberOfRows
+          description: "count of the number of records in this table"
   - name: "Vocabularies"
     inherit: "OntologyTerms"
     columns:
@@ -253,35 +246,30 @@ tables:
         inherited: true
       - name: "code"
         key: 2
-        description: "identifier used for this code with the ontology"
         columnType: "STRING"
-        inherited: true
+        molgenis:
+          name: name
+          description: "identifier used for this code with the ontology"
       - name: "order"
         columnType: "INT"
-        inherited: true
+        molgenis:
+          name: order
       - name: "definition"
         columnType: "TEXT"
-        inherited: true
+        molgenis:
+          name: order
       - name: "comments"
         columnType: "TEXT"
-        inherited: true
+        molgenis:
+          name: comments
       - name: "parent"
         refTable: "OntologyTerms"
-        refJsTemplate: "${name}"
-        description: "link to a more broad term"
         columnType: "REF"
-        inherited: true
+        molgenis:
+          name: parent
+          description: "link to a more broad term"
       - name: "ontologyTermURI"
         key: 3
         columnType: "STRING"
-        inherited: true
-      - name: "children"
-        refTable: "OntologyTerms"
-        mappedBy: "parent"
-        refJsTemplate: "${name}"
-        description: "link to more specific terms"
-        columnType: "REFBACK"
-        inherited: true
-      - name: "mg_tableclass"
-        columnType: "STRING"
-        inherited: true
+        molgenis:
+          name: ontologyTermURI

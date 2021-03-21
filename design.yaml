@@ -1,0 +1,177 @@
+name: Design
+tables:
+  - name: "CollectionEvents"
+    maelstrom:
+      name: Data Collection Events
+    molgenis:
+      name: "CollectionEvents"
+      description: "Definition of an action of data collection for a resource"
+    columns:
+      - name: "resource"
+        key: 1
+        required: true
+        refTable: "Resources"
+        maelstrom:
+          name: Study
+        molgenis:
+          name: resource
+      - name: "name"
+        key: 1
+        required: true
+        columnType: "STRING"
+        maelstrom:
+          name: Name
+        molgenis:
+          name: name
+      - name: "description"
+        columnType: "STRING"
+        maelstrom:
+           name: Description
+        molgenis:
+          name: description
+      - name: "startYear"
+        columnType: "INT"
+        maelstrom:
+          name: Start
+        molgenis:
+          name: startYear
+          description: "period of collection start"
+      - name: "endYear"
+        columnType: "INT"
+        maelstrom:
+          name: End
+        molgenis:
+          name: endYear
+          description: "period of collection end"
+      - name: "ageMin"
+        columnType: "REF"
+        refTable: "AgeCategories"
+        molgenis:
+          name: ageMin
+          description: "minimum ages included, if applicable"
+      - name: "ageMax"
+        columnType: "REF"
+        refTable: "AgeCategories"
+        molgenis:
+          name: ageMax
+          description: "maximum ages included, if applicable"
+      - name: "noParticipants"
+        columnType: "INT"
+        molgenis:
+          name: noParticipants
+          description: "number of participants sampled in this event"
+      - name: "subpopulations"
+        columnType: "REF_ARRAY"
+        refTable: "Subpopulations"
+        molgenis:
+          name: populations
+          description: "(sub)populations that are targetted with this collection event"
+      - name: "supplementaryInformation"
+        columnType: "TEXT"
+        maelstrom:
+          name: Supplementary information
+        molgenis:
+          name: supplementaryInformation
+          description: "any other information"
+  - name: "Subpopulations"
+    maelstrom:
+      name: Populations
+    molgenis:
+      description: "Subpopulations defined in this resource"
+    columns:
+      - name: "resource"
+        key: 1
+        required: true
+        refTable: "Resources"
+        columnType: "REF"
+        molgenis:
+          name: resource
+          description: "E.g. 'Mothers in first trimester','newborns'"
+        maelstrom:
+          name: Study
+      - name: "name"
+        key: 1
+        required: true
+        columnType: "STRING"
+        maelstrom:
+          name: Name
+        molgenis:
+          name: name
+          description: "E.g. 'Mothers in first trimester','newborns'"
+      - name: "noParticipants"
+        columnType: "INT"
+        maelstrom:
+          name: Number of Participants
+        molgenis:
+          name: noParticipants
+      - name: noParticipantsWithSamples
+        maelstrom:
+          name: Number of Participants with Biological Samples
+        molgenis:
+          name: n/a
+      - name: sourcesOfRecruitment
+        maelstrom:
+          name: Sources of Recruitment
+      - name: "description"
+        columnType: "TEXT"
+      - name: "InclusionCriteria"
+        refTable: "InclusionCriteria"
+        columnType: "REF_ARRAY"
+        maelstrom:
+          name: Selection Criteria
+        molgenis:
+          name: InclusionCriteria
+      - name: "geographicRegion"
+        refTable: "Regions"
+        description: "e.g. province"
+        columnType: "REF_ARRAY"
+        maelstrom:
+          name: Territories (part of Selection criteria?)
+      - name: "supplementaryInformation"
+        columnType: "TEXT"
+        maelstrom:
+          name: Supplementary Information
+  - name: "Releases"
+    molgenis:
+      name: Releases
+      description: "Definition of a data relase, in case of Model this will not include\
+      \ data"
+    columns:
+      - name: "resource"
+        key: 1
+        required: true
+        refTable: "Resources"
+        columnType: "REF"
+        molgenis:
+          name: resource
+          description: "Link to the resource of which contents has been released"
+      - name: "version"
+        key: 1
+        required: true
+        columnType: "STRING"
+        molgenis:
+          name: version
+          description: "version of the release"
+      - name: "includesModels"
+        refTable: "Releases"
+        columnType: "REF_ARRAY"
+        molgenis:
+          name: includesModels
+          description: "in case multiple existing data models  are used to produce this release"
+      - name: "includesDatabanks"
+        refTable: "Databanks"
+        columnType: "REF_ARRAY"
+        molgenis:
+          name: includesResources
+          description: "in case of a network/study, it will  contain data of particular\
+            \ cohorts/databanks involved"
+      - name: "date"
+        columnType: "DATE"
+        molgenis:
+          name: date
+          description: "date of the release"
+      - name: "description"
+        columnType: "TEXT"
+        molgenis:
+          name: description
+          description: "notes specific to this release"

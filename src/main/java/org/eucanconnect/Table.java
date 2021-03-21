@@ -5,8 +5,19 @@ import java.util.List;
 public class Table {
   String name;
   String description;
+  String info;
   Mapping maelstrom;
   Mapping molgenis;
+  String inherit;
+  List<Column> columns;
+
+  public String getInfo() {
+    return info;
+  }
+
+  public void setInfo(String info) {
+    this.info = info;
+  }
 
   public Mapping getMolgenis() {
     return molgenis;
@@ -15,9 +26,6 @@ public class Table {
   public void setMolgenis(Mapping molgenis) {
     this.molgenis = molgenis;
   }
-
-  String inherit;
-  List<Column> columns;
 
   public String getName() {
     return name;

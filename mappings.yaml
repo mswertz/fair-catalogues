@@ -10,6 +10,13 @@ tables:
         refTable: "Releases"
         refJsTemplate: "${resource.acronym}.${version}"
         columnType: "REF"
+        maelstrom:
+          name: study_name
+          description: Acronyme or Name of the study
+      - name: "fromResource"
+        maelstrom:
+          name: study_dataset
+          description: Names of  the study-specific dataset
       - name: "fromTable"
         key: 1
         required: true
@@ -24,6 +31,9 @@ tables:
         description: "optional, variable. Initially one may only define mapping between\
         \ releases"
         columnType: "REF_ARRAY"
+        maelstrom:
+          name: study_specific_var_name
+          description: Name of the study-specific variable(s)
       - name: "toRelease"
         key: 1
         required: true
@@ -37,6 +47,9 @@ tables:
         refLink: "toRelease"
         refJsTemplate: "${name}"
         columnType: "REF"
+        maelstrom:
+          name: harmonized_dataset_name
+          description: Name of the harmonized dataset
       - name: "toVariable"
         key: 1
         required: true
@@ -47,26 +60,83 @@ tables:
         \ Value of 'targetVariable' is filtered based on selected 'targetCollection'\
         \ and together be used for fkey(collection,dataset,name) in Variable."
         columnType: "REF"
+        maelstrom:
+          name: dsch_var_name
+          description: Name of the DSch variable
       - name: "match"
         required: true
         refTable: "StatusDetails"
         refJsTemplate: "${name}"
         description: "e.g. 'complete, partial, planned, no-match'"
+        maelstrom:
+          name: potential_harmo_status
+          description: Potential/preliminary harmonization status for the study-specific variable(s)
+          info: "1-Complete: The study dataset can construct the DataSchema variable as defined.
+                 2-Impossible: The study dataset cannot construct the DataSchema variable as defined.
+                 3-Undetermined: the harmonization potential of this variable has not yet been evaluated or we are waiting for more information from studies.
+                 4- Not Applicable: The harmonization status for this variable is not relevant."
         columnType: "REF"
+      - name: potential_harmo_status_detail
+        maelstrom:
+          name: potential_harmo_status_detail
+          description: Details on the preliminary/potential harmonization status for the study-specific variable(s) according to information from cookbook, protocal or questionnaire (not data).
       - name: "status"
         refTable: "Status"
         refJsTemplate: "${name}"
         description: "whether harmonisation is still draft or final"
         columnType: "REF"
+      - name: harmo_rule_category
+        maelstrom:
+          description: Selected harmonization rule
+          info: "Can be either:
+                 1. Direct mapping;
+                 2. Recode;
+                 3. Case-when;
+                 4. Operation;
+                 5. Impossible;
+                 6. Undertermined;
+                 7. Others."
       - name: "description"
-        description: "human readible description of the mapping"
         columnType: "TEXT"
+        molgenis:
+          name: description
+          description: "human readible description of the mapping"
       - name: "comments"
         description: "additional notes and comments"
         columnType: "TEXT"
+        maelstrom:
+          name: comment / harmo_comments
+          description: Additional information provided on the harmonization status or other study-specific variables that might be of interest.
+      - name: study_specific_var_info
+        maelstrom:
+          name: study_specific_var_info
+          description: Copied informations from questionnaires or SoPs required to understand the study-specific variable(s).
       - name: "syntax"
         description: "formal definition of the mapping, ideally executable code"
         columnType: "TEXT"
+        maelstrom:
+          name: harmo_rule
+          description: Code of the selected harmonization rules
+      - name: comments_internal_use
+        maelstrom:
+          name: comments_internal_use
+          description: Any comments or questions related to data exploration and harmonization rule
+          info: "Data exploration should identify:
+                 - distribution of the data (can help to map unidentified skip patterns or error from data download or studies) (e.g. write the NA%)
+                 - Issues with how to properly address harmonized different variable types (e.g. decisions linked changing categorical into binary)
+                 - keywords used to try to identify the variables and indication of whether they were searched
+                 - different variables and arguments for their use
+                 Comments about the harmo rule may include:
+
+                 the exploration must reflect the process of thinking of the harmonizer. They must explain reasons to:
+                 complete: explain reasons why you exclude other candidates, and why you kept the final variables
+                 impossible: explain reasons why you exclude all potential (data quality, no fit with definition...) or the fact that you found nothing (explicit keywords)
+                 undetermined: explain reasons why you hesitate between candidates and (potentially) next steps (contact project manager, contact PI, further investigation)
+
+                 The validator will need all thinking process of the harmonizer to decide if they:
+                 agree: no explanation needed if exploration explicitly gave all reasons
+                 disagree: explain why you disagree, propose an altenative and discuss with harmonizer
+                 don't know: explain reasons why you hesitate to agree or disagree and (potentially) next steps (contact harmonizer, contact project manager, contact PI, further investigation)"
   - name: "TableMappings"
     description: "Mapping from collected tables to standard/harmonized tables, optionally\
       \ including ETL syntaxes"

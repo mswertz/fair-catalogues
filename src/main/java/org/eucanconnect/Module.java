@@ -13,6 +13,7 @@ public class Module {
 
   List<Table> tables;
   String name;
+  String info;
 
   public String getName() {
     return name;
@@ -20,5 +21,13 @@ public class Module {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public String getInfo() {
+    return info;
+  }
+
+  public void setInfo(String info) {
+    this.info = info;
   }
 }

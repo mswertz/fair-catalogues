@@ -13,7 +13,7 @@ import java.util.Map;
 public class Convert {
   public static void main(String[] args) throws IOException, TemplateException {
 
-    List<String> files = List.of("variables.yaml", "mappings.yaml");
+    List<String> files = List.of("variables.yaml", "mappings.yaml", "design.yaml");
     ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
 
     // to file
