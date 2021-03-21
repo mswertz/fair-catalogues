@@ -12,13 +12,14 @@ We partitioned fair catalogues into:
 
 ## Human readable format
 
-* [in table format](tableformat.md) 
 * [in bullet format](bulletformat.md)
+* [in table format](tableformat.md)  <- incomplete
 
 ## Technical format (yaml)
 
 * [variables.yaml](variables.yaml)
 * [mappings.yaml](mappings.yaml)
+* [design.yaml](design.yaml)
 
 
 ## Background
