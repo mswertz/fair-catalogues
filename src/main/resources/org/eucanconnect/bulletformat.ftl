@@ -18,10 +18,12 @@ _${table.description}_
 > ${table.info}
 </#if>
 <#list table.columns as column>
-* ${column.name}<#if column.description??><br/>&nbsp;&nbsp;&nbsp;&nbsp;_${column.description}_</#if><#if column.maelstrom??>
+* ${column.name}<#if column.description??><br/>&nbsp;&nbsp;&nbsp;&nbsp;_${column.description}_</#if>
+<#if column.maelstrom??>
     * maelstrom: ${column.maelstrom.name?if_exists}<#if column.maelstrom.description??><br/>&nbsp;&nbsp;&nbsp;&nbsp;_${column.maelstrom.description}_</#if><#if column.maelstrom.info??>
 > ${column.maelstrom.info}
-</#if></#if><#if column.molgenis??>
+</#if></#if>
+<#if column.molgenis??>
     * molgenis: ${column.molgenis.name?if_exists}<#if column.molgenis.description??><br/>&nbsp;&nbsp;&nbsp;&nbsp;_${column.molgenis.description}_</#if>
 </#if>
 

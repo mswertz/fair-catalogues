@@ -18,7 +18,8 @@
 ## Module: Variables
 ### Table: Variables
 > In molgenis both collected and harmonized variables are within same table. In Maelstrom split between dsch* and study* tables (recognizable from prefix)
-* version    * molgenis: release.version<br/>&nbsp;&nbsp;&nbsp;&nbsp;_version of the schema that this variable is part of_
+* version
+    * molgenis: release.version<br/>&nbsp;&nbsp;&nbsp;&nbsp;_version of the schema that this variable is part of_
 
 * schema
     * maelstrom: dataschema / study_dataset    * molgenis: release.resource<br/>&nbsp;&nbsp;&nbsp;&nbsp;_name and version of a data schema (can be collected, or harmonized)_
@@ -40,11 +41,14 @@
 * unit
     * maelstrom: dsch_var_unit<br/>&nbsp;&nbsp;&nbsp;&nbsp;_Measurement unit of DataSchema variable_    * molgenis: unit<br/>&nbsp;&nbsp;&nbsp;&nbsp;_unit ontology_
 
-* collectionEvent    * molgenis: collectionEvent<br/>&nbsp;&nbsp;&nbsp;&nbsp;_in case of protocolised data collection this defines the moment in time this variable is collected on_
+* collectionEvent
+    * molgenis: collectionEvent<br/>&nbsp;&nbsp;&nbsp;&nbsp;_in case of protocolised data collection this defines the moment in time this variable is collected on_
 
-* references    * molgenis: references<br/>&nbsp;&nbsp;&nbsp;&nbsp;_to define foreign key relationships between variables within or across tables_
+* references
+    * molgenis: references<br/>&nbsp;&nbsp;&nbsp;&nbsp;_to define foreign key relationships between variables within or across tables_
 
-* mandatory    * molgenis: mandatory<br/>&nbsp;&nbsp;&nbsp;&nbsp;_whether this variable is required_
+* mandatory
+    * molgenis: mandatory<br/>&nbsp;&nbsp;&nbsp;&nbsp;_whether this variable is required_
 
 * description
     * maelstrom: dsch_var_description<br/>&nbsp;&nbsp;&nbsp;&nbsp;_Full description of DataSchema variable to inform the precise nature and scientific meaning of the harmonized variables to be created. Full sentences._
@@ -53,15 +57,21 @@
 * order
     * maelstrom: dsch_index<br/>&nbsp;&nbsp;&nbsp;&nbsp;_Rank of DataSchema variable (order in the list )_    * molgenis: order<br/>&nbsp;&nbsp;&nbsp;&nbsp;_to sort variables you can optionally add an order value_
 
-* exampleValues    * molgenis: exampleValues
+* exampleValues
+    * molgenis: exampleValues
 
-* vocabularies    * molgenis: vocabularies<br/>&nbsp;&nbsp;&nbsp;&nbsp;_link to vocabulary used. E.g. ICD-10_
+* vocabularies
+    * molgenis: vocabularies<br/>&nbsp;&nbsp;&nbsp;&nbsp;_link to vocabulary used. E.g. ICD-10_
 
 ### Table: RepeatedVariables
 * release (see variable)
+
 * table (see variable)
+
 * name (see variable)
-* isRepeatOf    * molgenis: isRepeatOf<br/>&nbsp;&nbsp;&nbsp;&nbsp;_reference to the definition of the variable that is being repeated_
+
+* isRepeatOf
+    * molgenis: isRepeatOf<br/>&nbsp;&nbsp;&nbsp;&nbsp;_reference to the definition of the variable that is being repeated_
 
 ### Table: VariableValues
 * release
@@ -76,12 +86,14 @@
 * label
     * maelstrom: dsch_var_cat_label    * molgenis: label
 
-* order    * molgenis: order
+* order
+    * molgenis: order
 
 * isMissing
     * maelstrom: missing    * molgenis: isMissing
 
-* ontologyTermIRI    * molgenis: ontologyTermIRI<br/>&nbsp;&nbsp;&nbsp;&nbsp;_reference to ontology term that defines this categorical value_
+* ontologyTermIRI
+    * molgenis: ontologyTermIRI<br/>&nbsp;&nbsp;&nbsp;&nbsp;_reference to ontology term that defines this categorical value_
 
 ### Table: Tables
 * schema
@@ -90,29 +102,41 @@
 * name
     * maelstrom: dsch name    * molgenis: name<br/>&nbsp;&nbsp;&nbsp;&nbsp;_unique name in the release_
 
-* label    * molgenis: label<br/>&nbsp;&nbsp;&nbsp;&nbsp;_short human readible description_
+* label
+    * molgenis: label<br/>&nbsp;&nbsp;&nbsp;&nbsp;_short human readible description_
 
-* unitOfObservation    * molgenis: unitOfObservation<br/>&nbsp;&nbsp;&nbsp;&nbsp;_defines what each record in this table describes_
+* unitOfObservation
+    * molgenis: unitOfObservation<br/>&nbsp;&nbsp;&nbsp;&nbsp;_defines what each record in this table describes_
 
-* topics    * molgenis: topics<br/>&nbsp;&nbsp;&nbsp;&nbsp;_enables grouping of table list into topic and to display tables in a tree_
+* topics
+    * molgenis: topics<br/>&nbsp;&nbsp;&nbsp;&nbsp;_enables grouping of table list into topic and to display tables in a tree_
 
-* description    * molgenis: description<br/>&nbsp;&nbsp;&nbsp;&nbsp;_description of the role/function of this table_
+* description
+    * molgenis: description<br/>&nbsp;&nbsp;&nbsp;&nbsp;_description of the role/function of this table_
 
-* numberOfRows    * molgenis: numberOfRows<br/>&nbsp;&nbsp;&nbsp;&nbsp;_count of the number of records in this table_
+* numberOfRows
+    * molgenis: numberOfRows<br/>&nbsp;&nbsp;&nbsp;&nbsp;_count of the number of records in this table_
 
 ### Table: Vocabularies
 * name
-* code    * molgenis: name<br/>&nbsp;&nbsp;&nbsp;&nbsp;_identifier used for this code with the ontology_
 
-* order    * molgenis: order
+* code
+    * molgenis: name<br/>&nbsp;&nbsp;&nbsp;&nbsp;_identifier used for this code with the ontology_
 
-* definition    * molgenis: order
+* order
+    * molgenis: order
 
-* comments    * molgenis: comments
+* definition
+    * molgenis: order
 
-* parent    * molgenis: parent<br/>&nbsp;&nbsp;&nbsp;&nbsp;_link to a more broad term_
+* comments
+    * molgenis: comments
 
-* ontologyTermURI    * molgenis: ontologyTermURI
+* parent
+    * molgenis: parent<br/>&nbsp;&nbsp;&nbsp;&nbsp;_link to a more broad term_
+
+* ontologyTermURI
+    * molgenis: ontologyTermURI
 
 ## Module: Mappings
 ### Table: VariableMappings
@@ -122,9 +146,11 @@ _Mappings from collected variables to standard/harmonized variables, optionally 
 * fromResource
     * maelstrom: study_dataset<br/>&nbsp;&nbsp;&nbsp;&nbsp;_Names of  the study-specific dataset_
 * fromTable
+
 * fromVariable<br/>&nbsp;&nbsp;&nbsp;&nbsp;_optional, variable. Initially one may only define mapping between releases_
     * maelstrom: study_specific_var_name<br/>&nbsp;&nbsp;&nbsp;&nbsp;_Name of the study-specific variable(s)_
 * toRelease
+
 * toTable
     * maelstrom: harmonized_dataset_name<br/>&nbsp;&nbsp;&nbsp;&nbsp;_Name of the harmonized dataset_
 * toVariable<br/>&nbsp;&nbsp;&nbsp;&nbsp;_in UI this is then one lookup field. In Excel it will be two columns. Value of 'targetVariable' is filtered based on selected 'targetCollection' and together be used for fkey(collection,dataset,name) in Variable._
@@ -136,11 +162,13 @@ _Mappings from collected variables to standard/harmonized variables, optionally 
 * potential_harmo_status_detail
     * maelstrom: potential_harmo_status_detail<br/>&nbsp;&nbsp;&nbsp;&nbsp;_Details on the preliminary/potential harmonization status for the study-specific variable(s) according to information from cookbook, protocal or questionnaire (not data)._
 * status<br/>&nbsp;&nbsp;&nbsp;&nbsp;_whether harmonisation is still draft or final_
+
 * harmo_rule_category
     * maelstrom: <br/>&nbsp;&nbsp;&nbsp;&nbsp;_Selected harmonization rule_
 > Can be either: 1. Direct mapping; 2. Recode; 3. Case-when; 4. Operation; 5. Impossible; 6. Undertermined; 7. Others.
 
-* description    * molgenis: description<br/>&nbsp;&nbsp;&nbsp;&nbsp;_human readible description of the mapping_
+* description
+    * molgenis: description<br/>&nbsp;&nbsp;&nbsp;&nbsp;_human readible description of the mapping_
 
 * comments<br/>&nbsp;&nbsp;&nbsp;&nbsp;_additional notes and comments_
     * maelstrom: comment / harmo_comments<br/>&nbsp;&nbsp;&nbsp;&nbsp;_Additional information provided on the harmonization status or other study-specific variables that might be of interest._
@@ -157,12 +185,19 @@ The validator will need all thinking process of the harmonizer to decide if they
 ### Table: TableMappings
 _Mapping from collected tables to standard/harmonized tables, optionally including ETL syntaxes_
 * fromRelease<br/>&nbsp;&nbsp;&nbsp;&nbsp;_release being mapped from, i.e. fromRelease.resource + fromRelease.version_
+
 * fromTable<br/>&nbsp;&nbsp;&nbsp;&nbsp;_name of the table being mapped from_
+
 * toRelease<br/>&nbsp;&nbsp;&nbsp;&nbsp;_release being mapped to, i.e. toRelease.resource + toRelease.version_
+
 * toTable<br/>&nbsp;&nbsp;&nbsp;&nbsp;_name of the table being mapped to_
+
 * order<br/>&nbsp;&nbsp;&nbsp;&nbsp;_Order in which table ETLs should be executed for this source-target combination_
+
 * description<br/>&nbsp;&nbsp;&nbsp;&nbsp;_human readible description of the mapping_
+
 * syntax<br/>&nbsp;&nbsp;&nbsp;&nbsp;_formal definition of the mapping, ideally executable code_
+
 ## Module: Design
 ### Table: CollectionEvents
 * resource
@@ -180,13 +215,17 @@ _Mapping from collected tables to standard/harmonized tables, optionally includi
 * endYear
     * maelstrom: End    * molgenis: endYear<br/>&nbsp;&nbsp;&nbsp;&nbsp;_period of collection end_
 
-* ageMin    * molgenis: ageMin<br/>&nbsp;&nbsp;&nbsp;&nbsp;_minimum ages included, if applicable_
+* ageMin
+    * molgenis: ageMin<br/>&nbsp;&nbsp;&nbsp;&nbsp;_minimum ages included, if applicable_
 
-* ageMax    * molgenis: ageMax<br/>&nbsp;&nbsp;&nbsp;&nbsp;_maximum ages included, if applicable_
+* ageMax
+    * molgenis: ageMax<br/>&nbsp;&nbsp;&nbsp;&nbsp;_maximum ages included, if applicable_
 
-* noParticipants    * molgenis: noParticipants<br/>&nbsp;&nbsp;&nbsp;&nbsp;_number of participants sampled in this event_
+* noParticipants
+    * molgenis: noParticipants<br/>&nbsp;&nbsp;&nbsp;&nbsp;_number of participants sampled in this event_
 
-* subpopulations    * molgenis: populations<br/>&nbsp;&nbsp;&nbsp;&nbsp;_(sub)populations that are targetted with this collection event_
+* subpopulations
+    * molgenis: populations<br/>&nbsp;&nbsp;&nbsp;&nbsp;_(sub)populations that are targetted with this collection event_
 
 * supplementaryInformation
     * maelstrom: Supplementary information    * molgenis: supplementaryInformation<br/>&nbsp;&nbsp;&nbsp;&nbsp;_any other information_
@@ -207,6 +246,7 @@ _Mapping from collected tables to standard/harmonized tables, optionally includi
 * sourcesOfRecruitment
     * maelstrom: Sources of Recruitment
 * description
+
 * InclusionCriteria
     * maelstrom: Selection Criteria    * molgenis: InclusionCriteria
 
@@ -215,15 +255,21 @@ _Mapping from collected tables to standard/harmonized tables, optionally includi
 * supplementaryInformation
     * maelstrom: Supplementary Information
 ### Table: Releases
-* resource    * molgenis: resource<br/>&nbsp;&nbsp;&nbsp;&nbsp;_Link to the resource of which contents has been released_
+* resource
+    * molgenis: resource<br/>&nbsp;&nbsp;&nbsp;&nbsp;_Link to the resource of which contents has been released_
 
-* version    * molgenis: version<br/>&nbsp;&nbsp;&nbsp;&nbsp;_version of the release_
+* version
+    * molgenis: version<br/>&nbsp;&nbsp;&nbsp;&nbsp;_version of the release_
 
-* includesModels    * molgenis: includesModels<br/>&nbsp;&nbsp;&nbsp;&nbsp;_in case multiple existing data models  are used to produce this release_
+* includesModels
+    * molgenis: includesModels<br/>&nbsp;&nbsp;&nbsp;&nbsp;_in case multiple existing data models  are used to produce this release_
 
-* includesDatabanks    * molgenis: includesResources<br/>&nbsp;&nbsp;&nbsp;&nbsp;_in case of a network/study, it will  contain data of particular cohorts/databanks involved_
+* includesDatabanks
+    * molgenis: includesResources<br/>&nbsp;&nbsp;&nbsp;&nbsp;_in case of a network/study, it will  contain data of particular cohorts/databanks involved_
 
-* date    * molgenis: date<br/>&nbsp;&nbsp;&nbsp;&nbsp;_date of the release_
+* date
+    * molgenis: date<br/>&nbsp;&nbsp;&nbsp;&nbsp;_date of the release_
 
-* description    * molgenis: description<br/>&nbsp;&nbsp;&nbsp;&nbsp;_notes specific to this release_
+* description
+    * molgenis: description<br/>&nbsp;&nbsp;&nbsp;&nbsp;_notes specific to this release_
 
