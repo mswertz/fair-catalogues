@@ -20,7 +20,8 @@ _${table.description}_
 <#list table.columns as column>
 * ${column.name}<#if column.description??><br/>&nbsp;&nbsp;&nbsp;&nbsp;_${column.description}_</#if>
 <#if column.maelstrom??>
-    * maelstrom: ${column.maelstrom.name?if_exists}<#if column.maelstrom.description??><br/>&nbsp;&nbsp;&nbsp;&nbsp;_${column.maelstrom.description}_</#if><#if column.maelstrom.info??>
+    * maelstrom: ${column.maelstrom.name?if_exists}<#if column.maelstrom.description??><br/>&nbsp;&nbsp;&nbsp;&nbsp;_${column.maelstrom.description}_</#if>
+<#if column.maelstrom.info??>
 > ${column.maelstrom.info}
 </#if></#if>
 <#if column.molgenis??>
