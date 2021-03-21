@@ -10,12 +10,14 @@ We partitioned fair catalogues into:
 * variables - for defining structure of collected datasets (e.g. cohorts) or integrated datasets (e.g. harmonized models)
 * mappings - for defining how variables from a dataset are mapped in on integration model
 
-## Human readable format
+## Human readable layouts
 
-* [in bullet format](bulletformat.md)
-* [in table format](tableformat.md)  <- incomplete
+* [in bullet layout](bulletformat.md)
+* [in tabular layout](tableformat.md)
 
 ## Technical format (yaml)
+
+Used for editing the models. We generate the human readable versions above.
 
 * [variables.yaml](variables.yaml)
 * [mappings.yaml](mappings.yaml)
