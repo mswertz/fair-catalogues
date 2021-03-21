@@ -1,144 +1,207 @@
 # FAIR catalogue - minimum inforation model
 
-# Module Variables
-* [Variables](#variables)
-* [RepeatedVariables](#repeatedvariables)
-* [VariableValues](#variablevalues)
-* [Tables](#tables)
-* [Vocabularies](#vocabularies)
-# Module Mappings
-* [VariableMappings](#variablemappings)
-* [TableMappings](#tablemappings)
-# Module Design
-* [CollectionEvents](#collectionevents)
-* [Subpopulations](#subpopulations)
-* [Releases](#releases)
+## Modules
+* Variables
+    * [Variables](#variables)
+    * [RepeatedVariables](#repeatedvariables)
+    * [VariableValues](#variablevalues)
+    * [Tables](#tables)
+    * [Vocabularies](#vocabularies)
+* Mappings
+    * [VariableMappings](#variablemappings)
+    * [TableMappings](#tablemappings)
+* Design
+    * [CollectionEvents](#collectionevents)
+    * [Subpopulations](#subpopulations)
+    * [Releases](#releases)
 
-## Variables
+## Module: Variables
 
-### Variables
-|element |mapping |description |
-|--------|--------|------------|
-| version | Molgenis: release.version<br/> |  |
-| schema | Maelstrom: dataschema / study_dataset<br/>Molgenis: release.resource<br/> |  |
-| table | Maelstrom: dataset (?)<br/>Molgenis: table<br/> |  |
-| name | Maelstrom: dsch_var_name / study_specific_var_name<br/>Molgenis: name<br/> |  |
-| label | Maelstrom: dsch_var_label<br/> |  |
-| topics | Maelstrom: study_specific_var_keywords<br/>Molgenis: topics<br/> |  |
-| format | Maelstrom: dsch_var_type / study_specific_var_type<br/>Molgenis: format<br/> |  |
-| unit | Maelstrom: dsch_var_unit<br/>Molgenis: unit<br/> |  |
-| collectionEvent | Molgenis: collectionEvent<br/> |  |
-| references | Molgenis: references<br/> |  |
-| mandatory | Molgenis: mandatory<br/> |  |
-| description | Maelstrom: dsch_var_description<br/> |  |
-| order | Maelstrom: dsch_index<br/>Molgenis: order<br/> |  |
-| exampleValues | Molgenis: exampleValues<br/> |  |
-| vocabularies | Molgenis: vocabularies<br/> |  |
-### RepeatedVariables
-|element |mapping |description |
-|--------|--------|------------|
-| release (see variable) |  |  |
-| table (see variable) |  |  |
-| name (see variable) |  |  |
-| isRepeatOf | Molgenis: isRepeatOf<br/> |  |
-### VariableValues
-|element |mapping |description |
-|--------|--------|------------|
-| release | Maelstrom: dataschema<br/>Molgenis: release<br/> |  |
-| variable | Maelstrom: dsch_var_name<br/>Molgenis: variable<br/> |  |
-| value | Maelstrom: dsch_var_cat_code / study_specific_var_cat<br/>Molgenis: value<br/> |  |
-| label | Maelstrom: dsch_var_cat_label<br/>Molgenis: label<br/> |  |
-| order | Molgenis: order<br/> |  |
-| isMissing | Maelstrom: missing<br/>Molgenis: isMissing<br/> |  |
-| ontologyTermIRI | Molgenis: ontologyTermIRI<br/> |  |
-### Tables
-|element |mapping |description |
-|--------|--------|------------|
-| schema | Maelstrom: dataschema<br/>Molgenis: release<br/> |  |
-| name | Maelstrom: dsch name<br/>Molgenis: name<br/> |  |
-| label | Molgenis: label<br/> |  |
-| unitOfObservation | Molgenis: unitOfObservation<br/> |  |
-| topics | Molgenis: topics<br/> |  |
-| description | Molgenis: description<br/> |  |
-| numberOfRows | Molgenis: numberOfRows<br/> |  |
-### Vocabularies
-|element |mapping |description |
-|--------|--------|------------|
-| name |  |  |
-| code | Molgenis: name<br/> |  |
-| order | Molgenis: order<br/> |  |
-| definition | Molgenis: order<br/> |  |
-| comments | Molgenis: comments<br/> |  |
-| parent | Molgenis: parent<br/> |  |
-| ontologyTermURI | Molgenis: ontologyTermURI<br/> |  |
+### Table: Variables
 
-## Mappings
+Synonyms:
 
-### VariableMappings
-|element |mapping |description |
-|--------|--------|------------|
-| fromRelease | Maelstrom: study_name<br/> |  |
-| fromResource | Maelstrom: study_dataset<br/> |  |
-| fromTable |  |  |
-| fromVariable | Maelstrom: study_specific_var_name<br/> | optional, variable. Initially one may only define mapping between releases |
-| toRelease |  |  |
-| toTable | Maelstrom: harmonized_dataset_name<br/> |  |
-| toVariable | Maelstrom: dsch_var_name<br/> | in UI this is then one lookup field. In Excel it will be two columns. Value of 'targetVariable' is filtered based on selected 'targetCollection' and together be used for fkey(collection,dataset,name) in Variable. |
-| match | Maelstrom: potential_harmo_status<br/> | e.g. 'complete, partial, planned, no-match' |
-| potential_harmo_status_detail | Maelstrom: potential_harmo_status_detail<br/> |  |
-| status |  | whether harmonisation is still draft or final |
-| harmo_rule_category | Maelstrom: <br/> |  |
-| description | Molgenis: description<br/> |  |
-| comments | Maelstrom: comment / harmo_comments<br/> | additional notes and comments |
-| study_specific_var_info | Maelstrom: study_specific_var_info<br/> |  |
-| syntax | Maelstrom: harmo_rule<br/> | formal definition of the mapping, ideally executable code |
-| comments_internal_use | Maelstrom: comments_internal_use<br/> |  |
-### TableMappings
-|element |mapping |description |
-|--------|--------|------------|
-| fromRelease |  | release being mapped from, i.e. fromRelease.resource + fromRelease.version |
-| fromTable |  | name of the table being mapped from |
-| toRelease |  | release being mapped to, i.e. toRelease.resource + toRelease.version |
-| toTable |  | name of the table being mapped to |
-| order |  | Order in which table ETLs should be executed for this source-target combination |
-| description |  | human readible description of the mapping |
-| syntax |  | formal definition of the mapping, ideally executable code |
+* in maelstrom: dsch_variables / study_variables
+* in molgenis: Variables<br/>&nbsp;&nbsp;&nbsp;&nbsp;_Definition of a non-repeated variable, or of the first variable from a repeated range_
 
-## Design
 
-### CollectionEvents
 |element |mapping |description |
 |--------|--------|------------|
-| resource | Maelstrom: Study<br/>Molgenis: resource<br/> |  |
-| name | Maelstrom: Name<br/>Molgenis: name<br/> |  |
-| description | Maelstrom: Description<br/>Molgenis: description<br/> |  |
-| startYear | Maelstrom: Start<br/>Molgenis: startYear<br/> |  |
-| endYear | Maelstrom: End<br/>Molgenis: endYear<br/> |  |
-| ageMin | Molgenis: ageMin<br/> |  |
-| ageMax | Molgenis: ageMax<br/> |  |
-| noParticipants | Molgenis: noParticipants<br/> |  |
-| subpopulations | Molgenis: populations<br/> |  |
-| supplementaryInformation | Maelstrom: Supplementary information<br/>Molgenis: supplementaryInformation<br/> |  |
-### Subpopulations
+| version | Molgenis: release.version<br/> | Molgenis: version of the schema that this variable is part of<br/>  |
+| schema | Maelstrom: dataschema / study_dataset<br/>Molgenis: release.resource<br/> | Maelstrom: <br/>Molgenis: name and version of a data schema (can be collected, or harmonized)<br/>  |
+| table | Maelstrom: dataset (?)<br/>Molgenis: table<br/> | Maelstrom: <br/>Molgenis: table this variable is part of<br/>  |
+| name | Maelstrom: dsch_var_name / study_specific_var_name<br/>Molgenis: name<br/> | Maelstrom: Name of the DataSchema variable<br/>Molgenis: name of the variable, unique within a table<br/>  |
+| label | Maelstrom: dsch_var_label<br/> | Maelstrom: Short description (label) of DataSchema variable<br/>  |
+| topics | Maelstrom: study_specific_var_keywords<br/>Molgenis: topics<br/> | Maelstrom: Comments or keywords important to estimate harmonization status<br/>Molgenis: annotation to indicate topic of the variable (e.g. using maelstrom areas of information)<br/>  |
+| format | Maelstrom: dsch_var_type / study_specific_var_type<br/>Molgenis: format<br/> | Maelstrom: Type of DataSchema variable<br/>Molgenis: type or format of the variable<br/>  |
+| unit | Maelstrom: dsch_var_unit<br/>Molgenis: unit<br/> | Maelstrom: Measurement unit of DataSchema variable<br/>Molgenis: unit ontology<br/>  |
+| collectionEvent | Molgenis: collectionEvent<br/> | Molgenis: in case of protocolised data collection this defines the moment in time this variable is collected on<br/>  |
+| references | Molgenis: references<br/> | Molgenis: to define foreign key relationships between variables within or across tables<br/>  |
+| mandatory | Molgenis: mandatory<br/> | Molgenis: whether this variable is required<br/>  |
+| description | Maelstrom: dsch_var_description<br/> | Maelstrom: Full description of DataSchema variable to inform the precise nature and scientific meaning of the harmonized variables to be created. Full sentences.<br/>  |
+| order | Maelstrom: dsch_index<br/>Molgenis: order<br/> | Maelstrom: Rank of DataSchema variable (order in the list )<br/>Molgenis: to sort variables you can optionally add an order value<br/>  |
+| exampleValues | Molgenis: exampleValues<br/> | Molgenis: <br/>  |
+| vocabularies | Molgenis: vocabularies<br/> | Molgenis: link to vocabulary used. E.g. ICD-10<br/>  |
+### Table: RepeatedVariables
+
+Synonyms:
+
+* in molgenis: <br/>&nbsp;&nbsp;&nbsp;&nbsp;_Definition of a repeated variable. Refers to another variable for its definition but has its own collection event._
+
+
 |element |mapping |description |
 |--------|--------|------------|
-| resource | Maelstrom: Study<br/>Molgenis: resource<br/> |  |
-| name | Maelstrom: Name<br/>Molgenis: name<br/> |  |
-| noParticipants | Maelstrom: Number of Participants<br/>Molgenis: noParticipants<br/> |  |
-| noParticipantsWithSamples | Maelstrom: Number of Participants with Biological Samples<br/>Molgenis: n/a<br/> |  |
-| sourcesOfRecruitment | Maelstrom: Sources of Recruitment<br/> |  |
-| description |  |  |
-| InclusionCriteria | Maelstrom: Selection Criteria<br/>Molgenis: InclusionCriteria<br/> |  |
-| geographicRegion | Maelstrom: Territories (part of Selection criteria?)<br/> | e.g. province |
-| supplementaryInformation | Maelstrom: Supplementary Information<br/> |  |
-### Releases
+| release (see variable) |  |   |
+| table (see variable) |  |   |
+| name (see variable) |  |   |
+| isRepeatOf | Molgenis: isRepeatOf<br/> | Molgenis: reference to the definition of the variable that is being repeated<br/>  |
+### Table: VariableValues
+
+Synonyms:
+
+* in maelstrom: dsch categories
+* in molgenis: VariableValues<br/>&nbsp;&nbsp;&nbsp;&nbsp;_Listing of categorical value+label definition in case of a categorical variable_
+
+
 |element |mapping |description |
 |--------|--------|------------|
-| resource | Molgenis: resource<br/> |  |
-| version | Molgenis: version<br/> |  |
-| includesModels | Molgenis: includesModels<br/> |  |
-| includesDatabanks | Molgenis: includesResources<br/> |  |
-| date | Molgenis: date<br/> |  |
-| description | Molgenis: description<br/> |  |
+| release | Maelstrom: dataschema<br/>Molgenis: release<br/> | Maelstrom: <br/>Molgenis: <br/>  |
+| variable | Maelstrom: dsch_var_name<br/>Molgenis: variable<br/> | Maelstrom: <br/>Molgenis: <br/>  |
+| value | Maelstrom: dsch_var_cat_code / study_specific_var_cat<br/>Molgenis: value<br/> | Maelstrom: Categories of the study-specific variable(s,) as copied from Questionnaires or Codebook<br/>Molgenis: <br/>  |
+| label | Maelstrom: dsch_var_cat_label<br/>Molgenis: label<br/> | Maelstrom: <br/>Molgenis: <br/>  |
+| order | Molgenis: order<br/> | Molgenis: <br/>  |
+| isMissing | Maelstrom: missing<br/>Molgenis: isMissing<br/> | Maelstrom: <br/>Molgenis: <br/>  |
+| ontologyTermIRI | Molgenis: ontologyTermIRI<br/> | Molgenis: reference to ontology term that defines this categorical value<br/>  |
+### Table: Tables
+
+Synonyms:
+
+* in maelstrom: Datasets
+* in molgenis: Tables<br/>&nbsp;&nbsp;&nbsp;&nbsp;_Definition of a table within a data release_
+
+
+|element |mapping |description |
+|--------|--------|------------|
+| schema | Maelstrom: dataschema<br/>Molgenis: release<br/> | Maelstrom: <br/>Molgenis: resource + version this table is defined for<br/>  |
+| name | Maelstrom: dsch name<br/>Molgenis: name<br/> | Maelstrom: <br/>Molgenis: unique name in the release<br/>  |
+| label | Molgenis: label<br/> | Molgenis: short human readible description<br/>  |
+| unitOfObservation | Molgenis: unitOfObservation<br/> | Molgenis: defines what each record in this table describes<br/>  |
+| topics | Molgenis: topics<br/> | Molgenis: enables grouping of table list into topic and to display tables in a tree<br/>  |
+| description | Molgenis: description<br/> | Molgenis: description of the role/function of this table<br/>  |
+| numberOfRows | Molgenis: numberOfRows<br/> | Molgenis: count of the number of records in this table<br/>  |
+### Table: Vocabularies
+
+Synonyms:
+
+
+
+|element |mapping |description |
+|--------|--------|------------|
+| name |  |   |
+| code | Molgenis: name<br/> | Molgenis: identifier used for this code with the ontology<br/>  |
+| order | Molgenis: order<br/> | Molgenis: <br/>  |
+| definition | Molgenis: order<br/> | Molgenis: <br/>  |
+| comments | Molgenis: comments<br/> | Molgenis: <br/>  |
+| parent | Molgenis: parent<br/> | Molgenis: link to a more broad term<br/>  |
+| ontologyTermURI | Molgenis: ontologyTermURI<br/> | Molgenis: <br/>  |
+
+## Module: Mappings
+
+### Table: VariableMappings
+
+Synonyms:
+
+
+
+|element |mapping |description |
+|--------|--------|------------|
+| fromRelease | Maelstrom: study_name<br/> | Maelstrom: Acronyme or Name of the study<br/>  |
+| fromResource | Maelstrom: study_dataset<br/> | Maelstrom: Names of  the study-specific dataset<br/>  |
+| fromTable |  |   |
+| fromVariable | Maelstrom: study_specific_var_name<br/> | Maelstrom: Name of the study-specific variable(s)<br/>  |
+| toRelease |  |   |
+| toTable | Maelstrom: harmonized_dataset_name<br/> | Maelstrom: Name of the harmonized dataset<br/>  |
+| toVariable | Maelstrom: dsch_var_name<br/> | Maelstrom: Name of the DSch variable<br/>  |
+| match | Maelstrom: potential_harmo_status<br/> | Maelstrom: Potential/preliminary harmonization status for the study-specific variable(s)<br/>  |
+| potential_harmo_status_detail | Maelstrom: potential_harmo_status_detail<br/> | Maelstrom: Details on the preliminary/potential harmonization status for the study-specific variable(s) according to information from cookbook, protocal or questionnaire (not data).<br/>  |
+| status |  |   |
+| harmo_rule_category | Maelstrom: <br/> | Maelstrom: Selected harmonization rule<br/>  |
+| description | Molgenis: description<br/> | Molgenis: human readible description of the mapping<br/>  |
+| comments | Maelstrom: comment / harmo_comments<br/> | Maelstrom: Additional information provided on the harmonization status or other study-specific variables that might be of interest.<br/>  |
+| study_specific_var_info | Maelstrom: study_specific_var_info<br/> | Maelstrom: Copied informations from questionnaires or SoPs required to understand the study-specific variable(s).<br/>  |
+| syntax | Maelstrom: harmo_rule<br/> | Maelstrom: Code of the selected harmonization rules<br/>  |
+| comments_internal_use | Maelstrom: comments_internal_use<br/> | Maelstrom: Any comments or questions related to data exploration and harmonization rule<br/>  |
+### Table: TableMappings
+
+Synonyms:
+
+
+
+|element |mapping |description |
+|--------|--------|------------|
+| fromRelease |  |   |
+| fromTable |  |   |
+| toRelease |  |   |
+| toTable |  |   |
+| order |  |   |
+| description |  |   |
+| syntax |  |   |
+
+## Module: Design
+
+### Table: CollectionEvents
+
+Synonyms:
+
+* in maelstrom: Data Collection Events
+* in molgenis: CollectionEvents<br/>&nbsp;&nbsp;&nbsp;&nbsp;_Definition of an action of data collection for a resource_
+
+
+|element |mapping |description |
+|--------|--------|------------|
+| resource | Maelstrom: Study<br/>Molgenis: resource<br/> | Maelstrom: <br/>Molgenis: <br/>  |
+| name | Maelstrom: Name<br/>Molgenis: name<br/> | Maelstrom: <br/>Molgenis: <br/>  |
+| description | Maelstrom: Description<br/>Molgenis: description<br/> | Maelstrom: <br/>Molgenis: <br/>  |
+| startYear | Maelstrom: Start<br/>Molgenis: startYear<br/> | Maelstrom: <br/>Molgenis: period of collection start<br/>  |
+| endYear | Maelstrom: End<br/>Molgenis: endYear<br/> | Maelstrom: <br/>Molgenis: period of collection end<br/>  |
+| ageMin | Molgenis: ageMin<br/> | Molgenis: minimum ages included, if applicable<br/>  |
+| ageMax | Molgenis: ageMax<br/> | Molgenis: maximum ages included, if applicable<br/>  |
+| noParticipants | Molgenis: noParticipants<br/> | Molgenis: number of participants sampled in this event<br/>  |
+| subpopulations | Molgenis: populations<br/> | Molgenis: (sub)populations that are targetted with this collection event<br/>  |
+| supplementaryInformation | Maelstrom: Supplementary information<br/>Molgenis: supplementaryInformation<br/> | Maelstrom: <br/>Molgenis: any other information<br/>  |
+### Table: Subpopulations
+
+Synonyms:
+
+* in maelstrom: Populations
+* in molgenis: <br/>&nbsp;&nbsp;&nbsp;&nbsp;_Subpopulations defined in this resource_
+
+
+|element |mapping |description |
+|--------|--------|------------|
+| resource | Maelstrom: Study<br/>Molgenis: resource<br/> | Maelstrom: <br/>Molgenis: E.g. 'Mothers in first trimester','newborns'<br/>  |
+| name | Maelstrom: Name<br/>Molgenis: name<br/> | Maelstrom: <br/>Molgenis: E.g. 'Mothers in first trimester','newborns'<br/>  |
+| noParticipants | Maelstrom: Number of Participants<br/>Molgenis: noParticipants<br/> | Maelstrom: <br/>Molgenis: <br/>  |
+| noParticipantsWithSamples | Maelstrom: Number of Participants with Biological Samples<br/>Molgenis: n/a<br/> | Maelstrom: <br/>Molgenis: <br/>  |
+| sourcesOfRecruitment | Maelstrom: Sources of Recruitment<br/> | Maelstrom: <br/>  |
+| description |  |   |
+| InclusionCriteria | Maelstrom: Selection Criteria<br/>Molgenis: InclusionCriteria<br/> | Maelstrom: <br/>Molgenis: <br/>  |
+| geographicRegion | Maelstrom: Territories (part of Selection criteria?)<br/> | Maelstrom: <br/>  |
+| supplementaryInformation | Maelstrom: Supplementary Information<br/> | Maelstrom: <br/>  |
+### Table: Releases
+
+Synonyms:
+
+* in molgenis: Releases<br/>&nbsp;&nbsp;&nbsp;&nbsp;_Definition of a data relase, in case of Model this will not include data_
+
+
+|element |mapping |description |
+|--------|--------|------------|
+| resource | Molgenis: resource<br/> | Molgenis: Link to the resource of which contents has been released<br/>  |
+| version | Molgenis: version<br/> | Molgenis: version of the release<br/>  |
+| includesModels | Molgenis: includesModels<br/> | Molgenis: in case multiple existing data models  are used to produce this release<br/>  |
+| includesDatabanks | Molgenis: includesResources<br/> | Molgenis: in case of a network/study, it will  contain data of particular cohorts/databanks involved<br/>  |
+| date | Molgenis: date<br/> | Molgenis: date of the release<br/>  |
+| description | Molgenis: description<br/> | Molgenis: notes specific to this release<br/>  |
 
 
