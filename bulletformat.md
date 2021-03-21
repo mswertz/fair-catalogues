@@ -17,9 +17,9 @@
 
 ## Module: Variables
 ### Table: Variables
-~~~~
+---
 In molgenis both collected and harmonized variables are within same table. In Maelstrom split between dsch* and study* tables (recognizable from prefix)
-~~~~
+---
 * version
     * molgenis: release.version<br/>&nbsp;&nbsp;&nbsp;&nbsp;_version of the schema that this variable is part of_
 
