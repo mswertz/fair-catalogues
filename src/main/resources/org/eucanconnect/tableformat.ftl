@@ -28,7 +28,7 @@ Synonyms:
 |element |mapping |description |
 |--------|--------|------------|
 <#list table.columns as column>
-| ${column.name} | <#if column.maelstrom??>Maelstrom: ${column.maelstrom.name?if_exists}<br/></#if><#if column.molgenis??>Molgenis: ${column.molgenis.name?if_exists}<br/></#if> | <#if column.maelstrom??>Maelstrom: ${column.maelstrom.description?if_exists}<br/></#if><#if column.molgenis??>Molgenis: ${column.molgenis.description?if_exists}<br/></#if>  |
+| ${column.name} | <#if column.maelstrom?? && column.maelstrom.name??>Maelstrom: ${column.maelstrom.name?if_exists}<br/></#if><#if column.molgenis?? && column.molgenis.name??>Molgenis: ${column.molgenis.name?if_exists}<br/></#if> | <#if column.maelstrom?? && column.maelstrom.description??>Maelstrom: ${column.maelstrom.description?if_exists}<br/></#if><#if column.molgenis?? && column.molgenis.description??>Molgenis: ${column.molgenis.description?if_exists}<br/></#if>  |
 </#list></#list>
 
 </#list>
